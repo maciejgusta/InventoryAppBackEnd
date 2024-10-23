@@ -18,7 +18,8 @@ db.connect(function(err) {
 
 
 app.get('/api/data', (req, res) => {
-    const query = "SELECT * FROM users";
+    const {table} = req.query;
+    const query = "SELECT * FROM " + table;
 
     db.query(query, (err, result) => {
         if (err) {
