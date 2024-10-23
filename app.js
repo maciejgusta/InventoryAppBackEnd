@@ -11,3 +11,13 @@ db.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
 });
+
+const query = "SELECT * FROM users";
+
+db.query(query, (err, result) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.json(result);
+    }
+  });
