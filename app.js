@@ -7,7 +7,7 @@ var db = mysql.createConnection({
     database: 'jadzia'
 });
 
-con.connect(function(err) {
+db.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
 });
