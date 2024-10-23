@@ -16,8 +16,8 @@ const query = "SELECT * FROM users";
 
 db.query(query, (err, result) => {
     if (err) {
-      res.status(500).send(err);
+        console.log('error');
     } else {
-      res.json(result);
+        console.log(result);
     }
   });
