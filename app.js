@@ -8,6 +8,9 @@ const db = mysql.createConnection({
     database: 'jadzia'
 });
 
-db.query('SELECT * FROM users;', (result) => {
-    console.log(result);
-});
+db.connect((err) => {
+    if (err) {
+      throw err;
+    }
+    console.log('Connected to MySQL database');
+  });
