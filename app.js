@@ -31,7 +31,7 @@ app.get('/api/data', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log("server started on ${port}");
+    console.log(`server started on ${port}`);
 });
 
 
