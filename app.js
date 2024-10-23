@@ -1,6 +1,10 @@
-var mysql = require('mysql2');
+const mysql = require('mysql2');
+const express = require('express');
 
-var db = mysql.createConnection({
+const app = express();
+const port = 3000;
+
+const db = mysql.createConnection({
     host: "localhost",
     user: "admin",
     password: "admin",
@@ -12,12 +16,17 @@ db.connect(function(err) {
     console.log("Connected!");
 });
 
-const query = "SELECT * FROM users";
 
-db.query(query, (err, result) => {
-    if (err) {
-        console.log('error');
-    } else {
-        console.log(result);
-    }
-  });
+app.get('/api/data', (req, res) => {
+    const query = "SELECT * FROM users";
+
+    db.query(query, (err, result) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+
