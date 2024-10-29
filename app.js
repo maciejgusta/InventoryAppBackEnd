@@ -25,7 +25,7 @@ app.get('/api/login', (req, res) => {
         if (err) {
             res.status(500).send(err);
         } else {
-            res.json(result);
+            res.json(len(result));
         }
     });
 });
