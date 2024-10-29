@@ -17,7 +17,7 @@ db.connect(function(err) {
 });
 
 
-app.get('/api/login', (req, res) => {
+app.post('/api/verify_log_in', (req, res) => {
     const {username, password} = req.query;
     const query = `SELECT * FROM users where username="${username}" and password="${password}"`;
 
@@ -31,6 +31,18 @@ app.get('/api/login', (req, res) => {
                 res.json(result[0]);
             }
         }
+    });
+});
+
+app.post('/api/sign_up', (req, res) => {
+    const {username, password, first_name, last_name} = req.body;
+
+    if (!username || !password || !first_name || !last_name) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    db.query(`SELECT username FROM users where username="${username}"`, (err, result) => {
+        console.log()
     });
 });
 
