@@ -8,7 +8,7 @@ const db = mysql.createConnection({
     host: "localhost",
     user: "admin",
     password: "admin",
-    database: 'jadzia'
+    database: 'Inventa'
 });
 
 db.connect(function(err) {
@@ -17,9 +17,9 @@ db.connect(function(err) {
 });
 
 
-app.get('/api/data', (req, res) => {
-    const {table} = req.query;
-    const query = "SELECT * FROM " + table;
+app.get('/api/login', (req, res) => {
+    const {username, password} = req.query;
+    const query = `SELECT * FROM users where username="${username}" and password="${password}"`;
 
     db.query(query, (err, result) => {
         if (err) {
@@ -33,5 +33,3 @@ app.get('/api/data', (req, res) => {
 app.listen(port, () => {
     console.log(`server started on ${port}`);
 });
-
-
