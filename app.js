@@ -18,7 +18,7 @@ db.connect(function(err) {
 
 
 app.post('/api/verify_log_in', (req, res) => {
-    const {username, password} = req.query;
+    const {username, password} = req.body;
     const query = `SELECT * FROM users where username="${username}" and password="${password}"`;
 
     db.query(query, (err, result) => {
