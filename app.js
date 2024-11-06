@@ -16,7 +16,7 @@ db.connect(function(err) {
     console.log("Connected!");
 });
 
-app.post('api/getbybarcode', (req, res) =>{
+app.post('/api/getbybarcode', (req, res) =>{
     const barcode = req.barcode;
     db.query(`SELECT * FROM products where barcode="${barcode}"`, (err, result) => {
         if (err){
