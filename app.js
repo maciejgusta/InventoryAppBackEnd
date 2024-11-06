@@ -16,6 +16,21 @@ db.connect(function(err) {
     console.log("Connected!");
 });
 
+app.post('api/getbybarcode', (req, res) =>{
+    const barcode = req.barcode;
+    db.query(`SELECT * FROM products where barcode="${barcode}"`, (err, result) => {
+        if (err){
+            res.status(500).send(err);
+        } else {
+            if (!result.length){
+                res.json("new");
+            } else {
+                res.json(result);
+            }
+        }
+    });
+});
+
 
 app.post('/api/verify_log_in', (req, res) => {
     const {username, password} = req.body;
