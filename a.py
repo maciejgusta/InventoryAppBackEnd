@@ -1,11 +1,15 @@
 import requests
 
 # URL to which the POST request will be sent
-url = "http://retro-ciecie.pl:3000/api/getbyname"
+url = "http://retro-ciecie.pl:3000/api/update"
 
 # Data you want to send in the POST request (as a dictionary)
 data = {
-    "name": "test",
+    "id_product": "",
+    "product_name": "nowy prod",
+    "barcode": 123,
+    "image_url": "testurl",
+    "quantity": 10,
 }
 
 # Send the POST request with JSON data
