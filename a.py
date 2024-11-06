@@ -8,7 +8,7 @@ data = {
     "barcode": "123456789",
 }
 
-# Send the POST request
+# Send the POST request with JSON data
 response = requests.post(url, json=data)
 
 # Check the response
