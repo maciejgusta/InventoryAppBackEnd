@@ -19,7 +19,6 @@ db.connect(function(err) {
 });
 
 app.post('/api/getbybarcode', (req, res) => {
-    console.log('Request body:', req.body); // Debugging line
     const { barcode } = req.body;
     db.query('SELECT * FROM products WHERE barcode = ?', [barcode], (err, result) => {
         if (err) {
@@ -27,6 +26,21 @@ app.post('/api/getbybarcode', (req, res) => {
         } else {
             if (!result.length) {
                 res.json([{"product_name":"", "barcode":barcode, "image_url":"", quantity: 0}]);
+            } else {
+                res.json(result);
+            }
+        }
+    });
+});
+
+app.post('/api/getbyname', (req, res) => {
+    const { name } = req.body;
+    db.query('SELECT * FROM products WHERE product_name = ?', [name], (err, result) => {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            if (!result.length) {
+                res.json([{"product_name":name, "barcode": "", "image_url":"", quantity: 0}]);
             } else {
                 res.json(result);
             }

@@ -1,11 +1,11 @@
 import requests
 
 # URL to which the POST request will be sent
-url = "http://retro-ciecie.pl:3000/api/getbybarcode"
+url = "http://retro-ciecie.pl:3000/api/getbyname"
 
 # Data you want to send in the POST request (as a dictionary)
 data = {
-    "barcode": "123456789",
+    "name": "test",
 }
 
 # Send the POST request with JSON data
@@ -18,7 +18,6 @@ print("Status Code:", response.status_code)
 try:
     response_data = response.json()  # This returns a dictionary if JSON is returned
     print("Response JSON:", response_data)
-    print(response_data[0]['id_product'])
 except ValueError:
     # If the response isn't JSON, print the raw text
     print("Response Text:", response.text)
