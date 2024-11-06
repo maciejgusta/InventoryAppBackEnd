@@ -33,7 +33,7 @@ app.post('api/getbybarcode', (req, res) =>{
 
 
 
-app.post('api/test', (req, res) => {
+app.post('/api/test', (req, res) => {
     res.json("working");
 });
 
