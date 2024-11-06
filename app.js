@@ -63,7 +63,7 @@ app.post('/api/update', (req, res) => {
                     }
                 });
             } else if (product_name != result[0]['product_name'] || barcode != result[0]['barcode'] || image_url != result[0]['image_url'] || quantity != result[0]['quantity']) {
-                db.query(`UPDATE products product_name="${product_name}" barcode="${barcode}" image_url="${image_url}" quantity="${quantity}" WHERE id_product="${id_product}"`, (err, result) => {
+                db.query(`UPDATE products SET product_name="${product_name}" barcode="${barcode}" image_url="${image_url}" quantity="${quantity}" WHERE id_product="${id_product}"`, (err, result) => {
                     if (err){
                         res.status(500).send(err);
                     } else {
