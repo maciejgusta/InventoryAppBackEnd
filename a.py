@@ -5,11 +5,11 @@ url = "http://retro-ciecie.pl:3000/api/update"
 
 # Data you want to send in the POST request (as a dictionary)
 data = {
-    "id_product": "",
-    "product_name": "nowy prod",
-    "barcode": 123,
-    "image_url": "testurl",
-    "quantity": 10,
+    "id_product": 3,
+    "product_name": "nowszy prod",
+    "barcode": 1234,
+    "image_url": "testurl2",
+    "quantity": 100,
 }
 
 # Send the POST request with JSON data
