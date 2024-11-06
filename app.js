@@ -55,7 +55,7 @@ app.post('/api/update', (req, res) => {
             res.status(500).send(err);
         } else {
             if (!result.length){
-                db.query(`INSERT INTO products (product_name, barcode, image_url, quantity) values ("${product_name}", "${barcode}", "${image_url}", ${quantity}")`, (err, result) => {
+                db.query(`INSERT INTO products (product_name, barcode, image_url, quantity) values ("${product_name}", ${barcode}, "${image_url}", ${quantity})`, (err, result) => {
                     if (err){
                         res.status(500).send(err);
                     } else {
