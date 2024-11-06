@@ -13,4 +13,12 @@ response = requests.post(url, json=data)
 
 # Check the response
 print("Status Code:", response.status_code)
-print("Response Text:", response.text)
+
+# Convert the response to a dictionary, if the content is JSON
+try:
+    response_data = response.json()  # This returns a dictionary if JSON is returned
+    print("Response JSON:", response_data)
+    print(response_data[0]['id_product'])
+except ValueError:
+    # If the response isn't JSON, print the raw text
+    print("Response Text:", response.text)

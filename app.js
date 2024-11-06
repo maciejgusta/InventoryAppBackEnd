@@ -26,7 +26,7 @@ app.post('/api/getbybarcode', (req, res) => {
             res.status(500).send(err);
         } else {
             if (!result.length) {
-                res.json("new");
+                res.json([{"product_name":"", "barcode":barcode, "image_url":"", quantity: 0}]);
             } else {
                 res.json(result);
             }
