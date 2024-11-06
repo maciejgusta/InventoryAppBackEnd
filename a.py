@@ -1,7 +1,7 @@
 import requests
 
 # URL to which the POST request will be sent
-url = "http://retro-ciecie.pl:3000/api/test"
+url = "http://retro-ciecie.pl:3000/api/getbybarcode"
 
 # Data you want to send in the POST request (as a dictionary)
 data = {

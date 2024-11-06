@@ -37,18 +37,6 @@ app.post('/api/test', (req, res) => {
     res.json("working");
 });
 
-app.post('/api/sign_up', (req, res) => {
-    const {username, password, first_name, last_name} = req.body;
-
-    if (!username || !password || !first_name || !last_name) {
-        return res.status(400).json({ error: 'All fields are required' });
-    }
-
-    db.query(`SELECT username FROM users where username="${username}"`, (err, result) => {
-        console.log()
-    });
-});
-
 app.listen(port, () => {
     console.log(`server started on ${port}`);
 });
