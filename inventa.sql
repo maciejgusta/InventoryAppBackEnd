@@ -16,33 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `items`
+-- Table structure for table `products`
 --
 
-DROP TABLE IF EXISTS `items`;
+DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `items` (
-  `id_produktu` int NOT NULL AUTO_INCREMENT,
-  `kod_kreskowy` varchar(255) NOT NULL,
-  `nazwa` varchar(255) NOT NULL,
-  `cena` float DEFAULT NULL,
-  `ilosc` float DEFAULT NULL,
-  `link_ftp` varchar(255) DEFAULT NULL,
-  `jednostka` varchar(255) DEFAULT NULL,
-  `data_stworzenia` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id_produktu`),
-  UNIQUE KEY `kod_kreskowy` (`kod_kreskowy`)
+CREATE TABLE `products` (
+  `id_product` int NOT NULL AUTO_INCREMENT,
+  `barcode` varchar(255) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `price` float DEFAULT NULL,
+  `quantity` varchar(255) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `date_of_creation` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_product`),
+  UNIQUE KEY `barcode` (`barcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `items`
+-- Dumping data for table `products`
 --
 
-LOCK TABLES `items` WRITE;
-/*!40000 ALTER TABLE `items` DISABLE KEYS */;
-/*!40000 ALTER TABLE `items` ENABLE KEYS */;
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
