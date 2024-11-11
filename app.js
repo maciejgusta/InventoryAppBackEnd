@@ -7,7 +7,7 @@ const port = 3000;
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: "3.120.22.79",
+    host: "localhost",
     user: "admin",
     password: "admin",
     database: 'inventa'
