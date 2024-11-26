@@ -76,6 +76,8 @@ app.post('/api/update', (req, res) => {
     //         }
     //     }
     // });
+    res.status(200)
+    res.json(true);
 });
 
 
