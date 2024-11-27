@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
-    host: "localhost",
+    host: "3.120.22.79",
     user: "admin",
     password: "admin",
     database: 'inventa'
