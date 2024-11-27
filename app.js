@@ -7,9 +7,9 @@ const port = 3000;
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: "retro-ciecie.pl",
-    user: "remoteadmin",
-    password: "laspalmas",
+    host: "localhost",
+    user: "admin",
+    password: "admin",
     database: 'inventa'
 });
 
