@@ -7,6 +7,7 @@ const port = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 
 const db = mysql.createConnection({
     host: "localhost",
