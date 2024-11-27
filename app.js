@@ -7,9 +7,9 @@ const port = 3000;
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "admin",
-    password: "admin",
+    host: "retro-ciecie.pl",
+    user: "remoteadmin",
+    password: "laspalmas",
     database: 'inventa'
 });
 
@@ -19,20 +19,30 @@ db.connect(function(err) {
 });
 
 app.post('/api/getbybarcode', (req, res) => {
-    const { barcode } = req.body;
-    //console.log(barcode);
-	db.query('SELECT * FROM products WHERE barcode = ?', [barcode], (err, result) => {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            if (!result.length) {
-                res.json([{"product_name":"", "barcode":barcode, "image_url":"", quantity: 0}]);
-            } else {
-                res.json(result);
-            }
-        }
+    const { post_barcode } = req.body;
+  
+    if (!post_barcode) {
+      return res.status(400).json({ error: 'Barcode is required' });
+    }
+  
+    console.log('Received barcode:', post_barcode);
+  
+    db.query('SELECT * FROM products WHERE barcode = ?', [post_barcode], (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Database error');
+      }
+  
+      if (!result.length) {
+        res.json([
+          { id_product: -1, product_name: '', barcode: post_barcode, image_url: '', quantity: 0 },
+        ]);
+      } else {
+        res.json(result);
+      }
     });
-});
+  });
+  
 
 app.post('/api/getbyname', (req, res) => {
     const { name } = req.body;
