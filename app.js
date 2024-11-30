@@ -62,7 +62,7 @@ app.post('/api/getbyid', (req, res) => {
             res.status(500).send(err);
         } else {
             if (!result.length) {
-                res.json({ id_product: '-1', product_name: name, barcode: '', image_url: '', quantity: '0', price: '', description: ''});
+                res.json({ id_product: '-1', product_name: '', barcode: '', image_url: '', quantity: '0', price: '', description: ''});
             } else {
                 res.json(result[0]);
             }
@@ -72,14 +72,14 @@ app.post('/api/getbyid', (req, res) => {
 
 app.post('/api/update', (req, res) => {
     console.log('try to update');
-    const {id_product, product_name, barcode, image_url, quantity, price, description} = req.body;
+    const {id_product, product_name, barcode, quantity, price, description} = req.body;
     db.query(`SELECT id_product FROM products WHERE id_product="${id_product}"`, (err, result) => {
         if (err){
             console.log('error on /api/update');
             res.status(500).send(err);
         } else {
             if (!result.length){
-                db.query(`INSERT INTO products (product_name, barcode, image_url, quantity, price, description) values ("${product_name}", "${barcode}", "${image_url}", "${quantity}", "${price}", "${description}")`, (err, result) => {
+                db.query(`INSERT INTO products (product_name, barcode, quantity, price, description) values ("${product_name}", "${barcode}", "${quantity}", "${price}", "${description}")`, (err, result) => {
                     if (err){
                         res.status(500).send(err);
                     } else {
@@ -88,7 +88,7 @@ app.post('/api/update', (req, res) => {
                     }
                 });
             } else  {
-                db.query(`UPDATE products SET product_name="${product_name}", barcode="${barcode}", image_url="${image_url}", quantity="${quantity}", price="${price}", description="${description}" WHERE id_product=${id_product}`, (err, result) => {
+                db.query(`UPDATE products SET product_name="${product_name}", barcode="${barcode}", quantity="${quantity}", price="${price}", description="${description}" WHERE id_product=${id_product}`, (err, result) => {
                     if (err){
                         console.log(err);
                         res.status(500).send(err);
