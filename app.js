@@ -46,9 +46,16 @@ app.post('/api/getbybarcode', (req, res) => {
   });
   
 
-app.post('/api/getbyname', (req, res) => {
-    const { name } = req.body;
-    db.query('SELECT * FROM products WHERE product_name = ?', [name], (err, result) => {
+app.post('/api/getbyid', (req, res) => {
+    const { post_id } = req.body;
+
+    if (!post_id) {
+        return res.status(400).json({ error: 'Id is required' });
+    }
+
+    console.log('Received id:', post_id);
+
+    db.query('SELECT * FROM products WHERE id_product = ?', [post_id], (err, result) => {
         if (err) {
             res.status(500).send(err);
         } else {
@@ -62,6 +69,7 @@ app.post('/api/getbyname', (req, res) => {
 });
 
 app.post('/api/update', (req, res) => {
+    console.log('try to update');
     const {id_product, product_name, barcode, image_url, quantity, price, description} = req.body;
     db.query(`SELECT id_product FROM products WHERE id_product="${id_product}"`, (err, result) => {
         if (err){
@@ -92,11 +100,21 @@ app.post('/api/update', (req, res) => {
     });
 });
 
+app.post('/api/getallproducts', (req, res) => {
+    db.query(`SELECT id_product as id, product_name as name FROM products`, (err, result) => {
+        if (err){
+            console.log('error on /api/getallproducts');
+            res.status(500).send(err);
+        } else {
+            console.log('fetching all products ok');
+            res.json(result);
+        }
+    });
+});
 
-app.get('/products/barcode',(req, res) => {
-    const query = "SELECT * FROM products WHERE barcode = ''"
 
-
+app.get('/api/test',(req, res) => {
+    res.status(200).send('working');
 });
 
 app.listen(port, () => {
