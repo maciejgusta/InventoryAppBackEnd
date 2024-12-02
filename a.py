@@ -1,11 +1,11 @@
 import requests
 
-# Corrected URL without specifying port 3000
-url = "https://retro-ciecie.pl/api/getallproducts"
+# URL to which the POST request will be sent
+url = "https://retro-ciecie.pl/api/delete"
 
 # Data you want to send in the POST request (as a dictionary)
 data = {
-    'product_name': 'test',
+    'id_product': '27'
 }
 
 # Send the POST request with JSON data
