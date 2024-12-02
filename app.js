@@ -115,7 +115,7 @@ app.post('/api/delete', (req, res) => {
     const {id_product} = req.body;
     db.query(`SELECT id_product FROM products WHERE id_product="${id_product}"`, (err, result) => {
         if (err){
-            console.log('error on /api/delete');
+            console.log('DELETE: error while searching the db for the product');
             res.status(500).send(err);
         } else {
             if (!result.length){
@@ -126,8 +126,8 @@ app.post('/api/delete', (req, res) => {
                         console.log(err);
                         res.status(500).send(err);
                     } else {
-                        console.log(`deleted product with id: ${id_product}`);
-                        res.status(200).send(`deleted product with id: ${id_product}`);
+                        console.log(`DELETE: product with id: ${id_product} deleted successfully`);
+                        res.status(200).send(`DELETE: product with id: ${id_product} deleted successfully`);
                     }
                 });
             }

@@ -1,14 +1,11 @@
 import requests
 
 # URL to which the POST request will be sent
-url = "http://localhost:3000/api/test"
+url = "https://retro-ciecie.pl/api/delete"
 
 # Data you want to send in the POST request (as a dictionary)
 data = {
-    'product_name': 'test', 
-    'barcode': '3431242', 
-    'image_url': 'http://test.com', 
-    'quantity': 0
+    'id_product': '30'
 }
 
 # Send the POST request with JSON data
