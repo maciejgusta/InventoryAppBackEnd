@@ -2,8 +2,20 @@ const mysql = require('mysql2');
 const express = require('express');
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const fs = require('fs');
 const app = express();
 const port = 3000;
+
+// Override console.log to save logs to a file
+const logFile = fs.createWriteStream('./server.log', { flags: 'a' }); // Append mode
+const originalLog = console.log;
+
+console.log = (...args) => {
+    const timestamp = new Date().toISOString();
+    const message = `${timestamp} - ${args.join(' ')}\n`;
+    logFile.write(message); // Write to file
+    originalLog(...args); // Still log to console
+};
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -43,8 +55,7 @@ app.post('/api/getbybarcode', (req, res) => {
         res.json(result[0]);
       }
     });
-  });
-  
+});
 
 app.post('/api/getbyid', (req, res) => {
     const { post_id } = req.body;
@@ -82,7 +93,6 @@ app.post('/api/update', (req, res) => {
                         res.status(500).send(err);
                     } else {
                         res.status(200).send('inserted product into the db');
-
                     }
                 });
             } else  {
@@ -111,7 +121,6 @@ app.post('/api/getallproducts', (req, res) => {
         }
     });
 });
-
 
 app.get('/api/test',(req, res) => {
     res.status(200).send('working');
