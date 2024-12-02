@@ -1,14 +1,11 @@
 import requests
 
-# URL to which the POST request will be sent
-url = "http://localhost:3000/api/test"
+# Corrected URL without specifying port 3000
+url = "https://retro-ciecie.pl/api/getallproducts"
 
 # Data you want to send in the POST request (as a dictionary)
 data = {
-    'product_name': 'test', 
-    'barcode': '3431242', 
-    'image_url': 'http://test.com', 
-    'quantity': 0
+    'product_name': 'test',
 }
 
 # Send the POST request with JSON data
