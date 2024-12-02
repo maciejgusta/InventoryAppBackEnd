@@ -110,6 +110,31 @@ app.post('/api/update', (req, res) => {
     });
 });
 
+app.post('/api/delete', (req, res) => {
+    console.log('try to delete');
+    const {id_product} = req.body;
+    db.query(`SELECT id_product FROM products WHERE id_product="${id_product}"`, (err, result) => {
+        if (err){
+            console.log('error on /api/delete');
+            res.status(500).send(err);
+        } else {
+            if (!result.length){
+                console.log(`DELETE: product with id: ${id_product} not found in the db`);
+            } else  {
+                db.query(`DELETE FROM products WHERE id_product="${id_product}"`, (err, result) => {
+                    if (err){
+                        console.log(err);
+                        res.status(500).send(err);
+                    } else {
+                        console.log(`deleted product with id: ${id_product}`);
+                        res.status(200).send(`deleted product with id: ${id_product}`);
+                    }
+                });
+            }
+        }
+    });
+});
+
 app.post('/api/getallproducts', (req, res) => {
     db.query(`SELECT id_product as id, product_name as name FROM products`, (err, result) => {
         if (err){
