@@ -117,6 +117,6 @@ app.get('/api/test',(req, res) => {
     res.status(200).send('working');
 });
 
-app.listen(port, () => {
+app.listen(port, 'localhost', () => {
     console.log(`server started on ${port}`);
 });
