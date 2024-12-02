@@ -120,6 +120,7 @@ app.post('/api/delete', (req, res) => {
         } else {
             if (!result.length){
                 console.log(`DELETE: product with id: ${id_product} not found in the db`);
+                res.status(200).send(`DELETE: product with id: ${id_product} not found in the db`);
             } else  {
                 db.query(`DELETE FROM products WHERE id_product="${id_product}"`, (err, result) => {
                     if (err){

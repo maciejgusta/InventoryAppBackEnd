@@ -5,7 +5,7 @@ url = "https://retro-ciecie.pl/api/delete"
 
 # Data you want to send in the POST request (as a dictionary)
 data = {
-    'id_product': '30'
+    'id_product': '27'
 }
 
 # Send the POST request with JSON data
